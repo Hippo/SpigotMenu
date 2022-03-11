@@ -32,6 +32,13 @@ public final class ItemMenuComponent implements MenuComponent {
   }
 
   @Override
+  public MenuComponent copy() {
+    ItemMenuComponent itemMenuComponent = new ItemMenuComponent(new ItemStack(itemStack));
+    itemMenuComponent.clickAction = this.clickAction;
+    return itemMenuComponent;
+  }
+
+  @Override
   public void accept(Inventory inventory, Integer slot) {
     inventory.setItem(slot, itemStack);
   }

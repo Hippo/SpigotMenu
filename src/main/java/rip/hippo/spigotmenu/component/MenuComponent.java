@@ -12,4 +12,5 @@ import java.util.function.BiConsumer;
  */
 public interface MenuComponent extends BiConsumer<Inventory, Integer> {
   void processEvent(Player player, InventoryClickEvent inventoryClickEvent);
+  MenuComponent copy();
 }

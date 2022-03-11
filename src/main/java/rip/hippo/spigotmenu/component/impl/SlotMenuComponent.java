@@ -6,7 +6,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import rip.hippo.spigotmenu.component.MenuComponent;
-import rip.hippo.spigotmenu.function.TriConsumer;
 
 /**
  * @author Hippo
@@ -35,6 +34,11 @@ public final class SlotMenuComponent implements MenuComponent {
     if (cancel) {
       inventoryClickEvent.setCancelled(true);
     }
+  }
+
+  @Override
+  public MenuComponent copy() {
+    return new SlotMenuComponent(slotFunction);
   }
 
   @Override

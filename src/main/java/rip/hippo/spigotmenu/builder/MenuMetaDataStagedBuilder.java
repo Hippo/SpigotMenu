@@ -22,6 +22,13 @@ public final class MenuMetaDataStagedBuilder {
     return this;
   }
 
+  public MenuMetaDataStagedBuilder fill(MenuComponent menuComponent) {
+    for (int i = 0; i < menuComponents.length; i++) {
+      menuComponents[i] = menuComponent.copy();
+    }
+    return this;
+  }
+
   public MenuMetaDataStagedBuilder addComponent(int slot, MenuComponent menuComponent) {
     if (slot >= menuComponents.length) {
       throw new IndexOutOfBoundsException("Tried to insert menu component out of bounds! size: " + menuComponents.length + " slot: " + slot);

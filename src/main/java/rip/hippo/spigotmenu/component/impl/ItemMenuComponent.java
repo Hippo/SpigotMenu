@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import rip.hippo.spigotmenu.component.MenuComponent;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * @author Hippo
@@ -18,6 +19,10 @@ public final class ItemMenuComponent implements MenuComponent {
 
   public ItemMenuComponent(ItemStack itemStack) {
     this.itemStack = itemStack;
+  }
+
+  public ItemMenuComponent(Supplier<ItemStack> itemStackSupplier) {
+    this(itemStackSupplier.get());
   }
 
   public ItemMenuComponent then(Consumer<Player> clickAction) {

@@ -57,6 +57,15 @@ public final class MenuMetaDataStagedBuilder {
     titleBuilder.getMenuContainer().register(name, menu);
   }
 
+  public Menu build() {
+    MenuRowStagedBuilder rowBuilder = getMenuRowStagedBuilder();
+    MenuTitleStagedBuilder titleBuilder = rowBuilder.getMenuNameStagedBuilder();
+    return new Menu(titleBuilder.getTitle(),
+        rowBuilder.getRows(),
+        allowDragging,
+        menuComponents);
+  }
+
   MenuRowStagedBuilder getMenuRowStagedBuilder() {
     return menuRowStagedBuilder;
   }

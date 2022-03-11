@@ -13,7 +13,7 @@ import java.util.*;
 public final class StandardMenuContainer implements MenuContainer {
 
   private final Map<String, Menu> menuLookup = new HashMap<>();
-  private final Map<UUID, Stack<Menu>> menuStackMap = new HashMap<>();
+  private final Map<UUID, Menu> menuStackMap = new HashMap<>();
 
   @Override
   public MenuTitleStagedBuilder newMenu() {
@@ -27,8 +27,8 @@ public final class StandardMenuContainer implements MenuContainer {
 
   @Override
   public void open(Player player, Menu menu) {
-    menuStackMap.computeIfAbsent(player.getUniqueId(), ignored -> new Stack<>()).push(menu);
     player.openInventory(menu.getInventory());
+    menuStackMap.put(player.getUniqueId(), menu);
   }
 
   @Override
@@ -41,19 +41,12 @@ public final class StandardMenuContainer implements MenuContainer {
 
   @Override
   public void close(Player player) {
-    Stack<Menu> menus = menuStackMap.get(player.getUniqueId());
-    if (menus != null && !menus.isEmpty()) {
-      menus.pop();
-    }
+    menuStackMap.remove(player.getUniqueId());
   }
 
   @Override
   public Menu getMenu(Player player) {
-    Stack<Menu> menus = menuStackMap.get(player.getUniqueId());
-    if (menus != null && !menus.isEmpty()) {
-      return menus.peek();
-    }
-    return null;
+    return menuStackMap.get(player.getUniqueId());
   }
 
   @Override

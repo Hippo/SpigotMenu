@@ -12,13 +12,17 @@ import rip.hippo.spigotmenu.listener.InventoryListener;
  */
 public final class SpigotMenuPlugin extends JavaPlugin implements SpigotMenu {
 
-  private final MenuContainer menuContainer = new StandardMenuContainer();
+  private final MenuContainer menuContainer;
 
   private static SpigotMenu apiInstance;
 
+  public SpigotMenuPlugin() {
+    apiInstance = this;
+    this.menuContainer = new StandardMenuContainer();
+  }
+
   @Override
   public void onEnable() {
-    apiInstance = this;
     Bukkit.getPluginManager().registerEvents(new InventoryListener(this), this);
   }
 

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "rip.hippo"
-version = "1.0.7"
+version = "1.0.8"
 
 repositories {
     mavenCentral()
@@ -14,14 +14,8 @@ repositories {
 
 dependencies {
     implementation("org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
 
 publishing {
     publications {

@@ -36,7 +36,14 @@ public class Menu {
     return inventory;
   }
 
+  public boolean hasComponent(int slot) {
+    return slot >= 0 && slot < menuComponents.length && menuComponents[slot] != null;
+  }
+
   public MenuComponent getComponent(int slot) {
+    if (!hasComponent(slot)) {
+      return null;
+    }
     return menuComponents[slot];
   }
 
